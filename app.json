@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "ReactNativeWise",
+    "slug": "reactnativewise",
+    "scheme": "reactnativewise",
+    "version": "0.0.1",
+    "runtimeVersion": "1.0.0",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "resizeMode": "cover",
+      "backgroundColor": "#9FE870",
+      "image": "./assets/splash.png"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "versionCode": 1,
+      "package": "com.reactnativewise.android"
+    },
+    "ios": {
+      "buildNumber": "1",
+      "bundleIdentifier": "com.reactnativewise.ios"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "534317f4-eac7-45c6-860f-43ed7726d565"
+      }
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/534317f4-eac7-45c6-860f-43ed7726d565"
+    },
+    "plugins": ["@config-plugins/detox"]
+  }
+}
