@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Avatar, Text, useTheme } from 'react-native-paper';
+import { Avatar, Text } from 'react-native-paper';
 
 const ListItemContainer = styled.View`
   width: 280px;
@@ -19,18 +19,16 @@ const AvatarContainer = styled.View`
 
 const BalanceText = styled.Text`
   font-size: 26px;
-  font-family: ${({ theme }) => theme.fonts.semibold};
+  font-family: 'semibold';
   color: ${({ theme }) => theme.colors.onBackground};
 `;
 
 const WalletCard = ({ item, index, isLast }) => {
-  const theme = useTheme();
-
   return (
     <ListItemContainer isLast={isLast}>
       <AvatarContainer>
         <Avatar.Image size={52} style={{ marginRight: 12 }} source={item.uri} />
-        <Text style={{ fontSize: 22, fontFamily: theme.fonts.semibold, color: theme.colors.onBackground }}>
+        <Text style={{ fontSize: 22, fontFamily: 'semibold', color: '#000' }}>
           {item.text}
         </Text>
       </AvatarContainer>
