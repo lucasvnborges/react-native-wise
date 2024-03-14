@@ -7,10 +7,11 @@ import {
 } from 'react-native-safe-area-context'
 import { AppProvider, RealmProvider, UserProvider } from '@realm/react'
 import { OpenRealmBehaviorType } from 'realm'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { ThemeProvider } from 'styled-components/native'
 import { schemas } from './models'
 import { defaultTheme } from './theme'
 import { AuthNavigation, MainNavigation } from './navigation'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
   useFonts,
   Inter_400Regular,
@@ -43,26 +44,28 @@ const App: React.FC<Props> = ({ appId }) => {
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <PaperProvider theme={defaultTheme}>
         <AppProvider id={appId}>
-          <UserProvider fallback={<AuthNavigation />}>
-            <RealmProvider
-              schema={schemas}
-              sync={{
-                flexible: true,
-                newRealmFileBehavior: {
-                  type: OpenRealmBehaviorType.DownloadBeforeOpen,
-                },
-                existingRealmFileBehavior: {
-                  type: OpenRealmBehaviorType.OpenImmediately,
-                },
-              }}
-            >
-              <SafeAreaView style={{ flex: 1 }}>
-                <GestureHandlerRootView style={{ flex: 1 }}>
-                  <MainNavigation />
-                </GestureHandlerRootView>
-              </SafeAreaView>
-            </RealmProvider>
-          </UserProvider>
+          <ThemeProvider theme={defaultTheme}>
+            <UserProvider fallback={<AuthNavigation />}>
+              <RealmProvider
+                schema={schemas}
+                sync={{
+                  flexible: true,
+                  newRealmFileBehavior: {
+                    type: OpenRealmBehaviorType.DownloadBeforeOpen,
+                  },
+                  existingRealmFileBehavior: {
+                    type: OpenRealmBehaviorType.OpenImmediately,
+                  },
+                }}
+              >
+                <SafeAreaView style={{ flex: 1 }}>
+                  <GestureHandlerRootView style={{ flex: 1 }}>
+                    <MainNavigation />
+                  </GestureHandlerRootView>
+                </SafeAreaView>
+              </RealmProvider>
+            </UserProvider>
+          </ThemeProvider>
         </AppProvider>
       </PaperProvider>
     </SafeAreaProvider>
