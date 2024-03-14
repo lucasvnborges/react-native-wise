@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import InitialScreen from '../screens/auth/initial'
 import LoginScreen from '../screens/auth/login'
 import RegisterScreen from '../screens/auth/register'
-import Home from '../screens/home'
+import Tabs from './tab.navigation'
 
 const Stack = createNativeStackNavigator()
 const MainStack = createNativeStackNavigator()
@@ -66,12 +66,12 @@ export const MainNavigation = () => {
   return (
     <NavigationContainer linking={linking}>
       <MainStack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Tabs"
         screenOptions={{ headerShown: false }}
       >
         <MainStack.Screen
-          name="Home"
-          component={Home}
+          name="Tabs"
+          component={Tabs}
           options={{
             animation: 'none',
           }}
