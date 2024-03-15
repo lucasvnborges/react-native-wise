@@ -7,9 +7,8 @@
     "ios": "expo run:ios"
   },
   "dependencies": {
-    "@devvie/bottom-sheet": "^0.2.0",
+    "@devvie/bottom-sheet": "^0.3.0",
     "@expo-google-fonts/inter": "^0.2.3",
-    "@gorhom/bottom-sheet": "^4.6.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.5.16",
     "@react-navigation/material-bottom-tabs": "^6.2.16",
@@ -41,7 +40,7 @@
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
     "react-native-svg": "13.9.0",
-    "realm": "^12.5.1",
+    "realm": "12.6.2",
     "styled-components": "5.2.0",
     "yup": "^0.32.11"
   },

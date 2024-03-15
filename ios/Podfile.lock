@@ -533,7 +533,7 @@ PODS:
     - React-jsi (= 0.72.10)
     - React-logger (= 0.72.10)
     - React-perflogger (= 0.72.10)
-  - RealmJS (12.5.1):
+  - RealmJS (12.6.2):
     - React
   - RNCMaskedView (0.1.11):
     - React
@@ -856,7 +856,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 6ca43e8deadf01ff06b3f01abf8f0e4d508e23c3
   React-utils: 372b83030a74347331636909278bf0a60ec30d59
   ReactCommon: 38824bfffaf4c51fbe03a2730b4fd874ef34d67b
-  RealmJS: 5af7e3b3c1b6de6a1f9bd62bfbf4caca749fa708
+  RealmJS: 385df5ee940d96f1de26b1dab153e325633d3052
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNGestureHandler: c0d04458598fcb26052494ae23dda8f8f5162b13
   RNReanimated: 9f7068e43b9358a46a688d94a5a3adb258139457
