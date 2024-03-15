@@ -21,6 +21,7 @@ import {
   Inter_800ExtraBold,
   Inter_900Black,
 } from '@expo-google-fonts/inter'
+import { Loading } from './components/Loading'
 
 type Props = {
   appId: string
@@ -48,6 +49,7 @@ const App: React.FC<Props> = ({ appId }) => {
             <UserProvider fallback={<AuthNavigation />}>
               <RealmProvider
                 schema={schemas}
+                fallback={Loading}
                 sync={{
                   flexible: true,
                   newRealmFileBehavior: {
