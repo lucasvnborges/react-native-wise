@@ -57,21 +57,6 @@ const LoginScreen = () => {
     }
   }, [email, password, setAuthState, app])
 
-  const handleRegister = useCallback(async () => {
-    setAuthState(AuthState.Loading)
-
-    try {
-      await app.emailPasswordAuth.registerUser({ email, password })
-
-      const credentials = Realm.Credentials.emailPassword(email, password)
-
-      await app.logIn(credentials)
-      setAuthState(AuthState.None)
-    } catch (e) {
-      setAuthState(AuthState.RegisterError)
-    }
-  }, [email, password, setAuthState, app])
-
   return (
     <SafeAreaView
       testID="loginScreen"
@@ -167,7 +152,10 @@ const LoginScreen = () => {
         </View>
 
         {authState === AuthState.LoginError && (
-          <Text style={[styles.error]} testID="loginScreenCredentialsErrorMessage">
+          <Text
+            style={[styles.error]}
+            testID="loginScreenCredentialsErrorMessage"
+          >
             Make sure the email and password are correct
           </Text>
         )}
@@ -188,7 +176,7 @@ const LoginScreen = () => {
           <Button
             underline
             mode="text"
-            onPress={handleRegister}
+            onPress={console.log}
             style={styles.buttonStyle}
             testID="loginScreenRecoveryButton"
             contentStyle={styles.buttonContentStyle}
