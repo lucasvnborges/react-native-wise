@@ -1,9 +1,10 @@
-import React from 'react';
-import { View } from 'react-native';
-import { useTheme, Avatar, IconButton } from 'react-native-paper';
-import styled from 'styled-components/native';
-import { SmallButton } from '../../../components/Paper';
-import { Icon } from '../../../components/Icon';
+import React from 'react'
+import { View } from 'react-native'
+import { useTheme, Avatar, IconButton, Text } from 'react-native-paper'
+import styled from 'styled-components/native'
+import { SmallButton } from '../../../components/Paper'
+import { Icon } from '../../../components/Icon'
+import { useAuth } from '@realm/react'
 
 const HeaderContainer = styled.View`
   height: 60px;
@@ -11,19 +12,20 @@ const HeaderContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  shadow-color: #000;
+  /* shadow-color: #000;
   shadow-offset: 0px 1px;
   shadow-opacity: 0.2;
-  shadow-radius: 4px;
+  shadow-radius: 4px; */
   background-color: ${({ theme }) => theme.colors.background};
-`;
+`
 
 const EarnButton = styled(SmallButton)`
   margin-right: 8px;
-`;
+`
 
-const Main = () => {
-  const theme = useTheme();
+const Header = () => {
+  const theme = useTheme()
+  const auth = useAuth()
 
   return (
     <HeaderContainer>
@@ -43,7 +45,16 @@ const Main = () => {
           textColor={theme.colors.onPrimaryContainer}
           buttonColor={theme.colors.primaryContainer}
         >
-          Earn $15
+          <Text
+            style={{
+              height: 22,
+              fontSize: 12,
+              alignSelf: 'center',
+              fontFamily: 'semibold',
+            }}
+          >
+            Earn $15
+          </Text>
         </EarnButton>
 
         <IconButton
@@ -63,7 +74,7 @@ const Main = () => {
         />
       </View>
     </HeaderContainer>
-  );
-};
+  )
+}
 
-export default Main;
+export default Header
