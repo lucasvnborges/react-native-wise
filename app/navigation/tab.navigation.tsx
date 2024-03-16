@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { CommonActions } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Text, BottomNavigation, useTheme } from 'react-native-paper'
-import Svg, { Path, SvgXml } from 'react-native-svg'
+import Svg, { Path } from 'react-native-svg'
 import HomeScreen from '../screens/home'
 
 const Home = (props: any) => (
