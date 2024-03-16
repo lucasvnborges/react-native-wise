@@ -1,24 +1,14 @@
-import React from 'react';
-import { FlatList, ScrollView, View } from 'react-native';
-import { Avatar, Text, useTheme } from 'react-native-paper';
-import { useAuth } from '@realm/react';
-import { Icon } from '../../components/Icon';
-import { SmallButton } from '../../components/Paper';
-import WalletCard from './components/Wallet';
-import Header from './components/Header';
-import {
-  Container,
-  BalanceContainer,
-  BalanceText,
-  ActionButtonsContainer,
-  ExchangeRateContainer,
-  ExchangeRateText,
-} from './styles';
-import ExchangeRate from './components/ExchangeRate';
+import React from 'react'
+import { FlatList, ScrollView, View } from 'react-native'
+import { Text, useTheme } from 'react-native-paper'
+import { Icon } from '../../components/Icon'
+import { SmallButton } from '../../components/Paper'
+import WalletCard from './components/Wallet'
+import Header from './components/Header'
+import ExchangeRate from './components/ExchangeRate'
 
 const Home: React.FC = () => {
-  const theme = useTheme();
-  const auth = useAuth();
+  const theme = useTheme()
 
   const data = [
     {
@@ -39,7 +29,7 @@ const Home: React.FC = () => {
       balance: '0.00',
       uri: require('../../assets/euaflag.png'),
     },
-  ];
+  ]
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
