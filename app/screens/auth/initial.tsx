@@ -3,9 +3,9 @@ import { Image } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ProgressBar, Text, useTheme } from 'react-native-paper'
 import styled from 'styled-components/native'
-import Button from '../../components/Button'
 import { NavigationProp } from '@react-navigation/native'
 import { AuthStackParamList } from '../../navigation'
+import { Button } from '../../components'
 
 const Background = styled(SafeAreaView)`
   flex: 1;
@@ -40,7 +40,7 @@ const StyledText = styled(Text)`
   font-family: 'black';
   padding-vertical: 4px;
   color: ${({ theme }) => theme.colors.onBackground};
-`;
+`
 
 const ButtonContainer = styled.View`
   flex: 1;
@@ -57,13 +57,11 @@ const GoogleSignInButton = styled(Button)`
 
 const uri = '../../assets/globe.png'
 
-type InitialProps = {
+type Props = {
   navigation: NavigationProp<AuthStackParamList>
 }
 
-export default function Initial({
-  navigation,
-}: InitialProps): React.JSX.Element {
+export default function Initial({ navigation }: Props): React.JSX.Element {
   const theme = useTheme()
 
   return (
