@@ -1,124 +1,140 @@
 import React from 'react'
-import { View, Image } from 'react-native'
-import { ProgressBar, Text, useTheme } from 'react-native-paper'
-import { useNavigation } from '@react-navigation/native'
-import { Button, LargeButton } from '../../components/Paper'
+import { Image } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { ProgressBar, Text, useTheme } from 'react-native-paper'
+import styled from 'styled-components/native'
+import Button from '../../components/Button'
+import { NavigationProp } from '@react-navigation/native'
+import { AuthStackParamList } from '../../navigation'
+
+const Background = styled(SafeAreaView)`
+  flex: 1;
+  background-color: ${({ theme }) => theme.colors.background};
+`
+
+const Container = styled.View`
+  flex: 1;
+  padding: 24px;
+`
+
+const ProgressContainer = styled.View`
+  padding-bottom: 24px;
+`
+
+const ImageContainer = styled.View`
+  flex: 3;
+  align-items: center;
+  justify-content: flex-end;
+`
+
+const TextContainer = styled.View`
+  flex: 2;
+  align-items: center;
+  justify-content: center;
+`
+
+const StyledText = styled(Text)`
+  font-size: 38px;
+  line-height: 36px;
+  text-align: center;
+  font-family: 'black';
+  padding-vertical: 4px;
+  color: ${({ theme }) => theme.colors.onBackground};
+`;
+
+const ButtonContainer = styled.View`
+  flex: 1;
+`
+
+const Row = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+const GoogleSignInButton = styled(Button)`
+  margin-top: 16px;
+`
 
 const uri = '../../assets/globe.png'
 
-const google_icon =
-  'https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png'
+type InitialProps = {
+  navigation: NavigationProp<AuthStackParamList>
+}
 
-export default function Initial() {
+export default function Initial({
+  navigation,
+}: InitialProps): React.JSX.Element {
   const theme = useTheme()
-  const navigation = useNavigation()
 
   return (
-    <SafeAreaView
-      testID="initialScreen"
-      style={{ flex: 1, backgroundColor: theme.colors.background }}
-    >
-      <View style={{ padding: 24 }}>
-        <ProgressBar
-          progress={1}
-          testID="initialScreenProgress"
-          style={{ height: 6, borderRadius: 8 }}
-          color={theme.colors.onPrimaryContainer}
-        />
-      </View>
+    <Background>
+      <Container>
+        <ProgressContainer>
+          <ProgressBar
+            progress={1}
+            style={{ height: 6, borderRadius: 8 }}
+            color={theme.colors.onPrimaryContainer}
+          />
+        </ProgressContainer>
 
-      <View
-        style={{
-          flex: 3,
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-        }}
-      >
-        <Image
-          resizeMode="contain"
-          testID="initialScreenImage"
-          source={require(uri)}
-          style={{ width: '100%', height: '100%' }}
-        />
-      </View>
+        <ImageContainer>
+          <Image
+            resizeMode="contain"
+            source={require(uri)}
+            style={{ width: '100%', height: '100%' }}
+          />
+        </ImageContainer>
 
-      <View
-        style={{
-          flex: 2,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Text
-          testID="initialScreenTextOneAccount"
-          variant="bodyMedium"
-          style={{
-            padding: 16,
-            fontSize: 40,
-            lineHeight: 34,
-            fontFamily: 'black',
-            textAlign: 'center',
-            color: theme.colors.primary,
-          }}
-        >
-          ONE ACCOUNT FOR ALL THE MONEY IN THE WORLD
-        </Text>
-      </View>
+        <TextContainer>
+          <StyledText variant="bodyMedium">
+            ONE ACCOUNT FOR ALL THE MONEY IN THE WORLD
+          </StyledText>
+        </TextContainer>
 
-      <View
-        style={{
-          flex: 1,
-          padding: 24,
-          flexDirection: 'column',
-        }}
-      >
-        <View
-          style={{
-            marginBottom: 16,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <LargeButton
-            mode="contained"
-            testID="initialScreenLoginButton"
-            style={{ width: '47.5%' }}
-            textColor={theme.colors.onPrimaryContainer}
-            buttonColor={theme.colors.primaryContainer}
-            onPress={() => navigation.navigate('LoginScreen')}
+        <ButtonContainer>
+          <Row>
+            <Button
+              rounded
+              size="large"
+              mode="contained"
+              fontSize={18}
+              fontFamily="bold"
+              style={{ width: '47.5%' }}
+              textColor={theme.colors.onPrimaryContainer}
+              buttonColor={theme.colors.primaryContainer}
+              onPress={() => navigation.navigate('LoginScreen')}
+            >
+              Log in
+            </Button>
+            <Button
+              rounded
+              size="large"
+              mode="contained"
+              fontSize={18}
+              fontFamily="bold"
+              style={{ width: '47.5%' }}
+              textColor={theme.colors.onPrimaryContainer}
+              buttonColor={theme.colors.primaryContainer}
+              onPress={() => navigation.navigate('RegisterScreen')}
+            >
+              Register
+            </Button>
+          </Row>
+
+          <GoogleSignInButton
+            rounded
+            mode="outlined"
+            fontSize={18}
+            fontFamily="bold"
+            iconName="google"
+            onPress={console.log}
+            textColor={theme.colors.onBackground}
+            buttonColor={theme.colors.background}
           >
-            Log in
-          </LargeButton>
-          <LargeButton
-            mode="contained"
-            testID="initialScreenRegisterButton"
-            style={{ width: '47.5%' }}
-            textColor={theme.colors.onPrimaryContainer}
-            buttonColor={theme.colors.primaryContainer}
-            onPress={() => navigation.navigate('RegisterScreen')}
-          >
-            Register
-          </LargeButton>
-        </View>
-
-        <Button
-          mode="outlined"
-          onPress={console.log}
-          testID="initialScreenGoogleAuthButton"
-          icon={() => (
-            <Image
-              resizeMode="contain"
-              source={{ uri: google_icon }}
-              style={{ width: 16, height: 16, marginHorizontal: 4 }}
-            />
-          )}
-          textColor={theme.colors.onBackground}
-        >
-          Sig in with Google
-        </Button>
-      </View>
-    </SafeAreaView>
+            Sign in with Google
+          </GoogleSignInButton>
+        </ButtonContainer>
+      </Container>
+    </Background>
   )
 }
