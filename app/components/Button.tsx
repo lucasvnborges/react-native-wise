@@ -16,6 +16,7 @@ interface ButtonProps extends PaperButtonProps {
   iconSize?: number
   iconColor?: string
   rounded?: boolean
+  underline?: boolean
 }
 
 const heights = {
@@ -35,10 +36,11 @@ const Button: React.FC<ButtonProps> = ({
   buttonColor,
   iconName,
   iconColor,
-  iconSize,
-  fontSize,
-  fontFamily,
+  iconSize = 18,
+  fontSize = 16,
+  fontFamily = 'semibold',
   rounded,
+  underline,
   ...rest
 }) => {
   const theme = useTheme()
@@ -48,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
       return (
         <Icon
           name={iconName}
-          size={iconSize || 18}
+          size={iconSize}
           color={iconColor || theme.colors.onSurfaceVariant}
         />
       )
@@ -59,15 +61,21 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <PaperButton
-      mode={mode}
       onPress={onPress}
       icon={renderIcon}
+      mode={underline ? 'text' : mode}
       textColor={textColor || theme.colors.onPrimary}
+      rippleColor={underline ? 'transparent' : theme.colors.elevation.level1}
       labelStyle={{
-        fontSize: fontSize || 16,
-        fontFamily: fontFamily || 'semibold',
+        fontSize: fontSize,
+        fontFamily: fontFamily,
+        textDecorationLine: underline ? 'underline' : 'none',
       }}
-      buttonColor={buttonColor || theme.colors.primary}
+      buttonColor={
+        underline
+          ? theme.colors.background
+          : buttonColor || theme.colors.primary
+      }
       contentStyle={{
         height: size ? heights[size] : heights['medium'],
       }}
