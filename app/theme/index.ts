@@ -33,7 +33,7 @@ export const defaultTheme = {
     "inversePrimary": "#FFFFFF",
     "elevation": {
       "level0": "transparent",
-      "level1": "rgb(238, 246, 246)",
+      "level1": "rgba(25, 28, 29, 0.12)",
       "level2": "rgb(230, 241, 242)",
       "level3": "rgb(223, 237, 238)",
       "level4": "rgb(220, 235, 237)",
