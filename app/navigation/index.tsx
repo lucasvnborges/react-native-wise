@@ -2,16 +2,18 @@ import * as Linking from 'expo-linking'
 import React, { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
 import InitialScreen from '../screens/auth/initial'
 import LoginScreen from '../screens/auth/login'
 import RegisterScreen from '../screens/auth/register'
 import Tabs from './tab.navigation'
 
-const Stack = createNativeStackNavigator()
-const MainStack = createNativeStackNavigator()
+export type AuthStackParamList = {
+  InitialScreen: undefined
+  LoginScreen: undefined
+  RegisterScreen: undefined
+}
 
-const prefix = Linking.createURL('/')
+const Stack = createNativeStackNavigator<AuthStackParamList>()
 
 export const AuthNavigation = () => (
   <NavigationContainer>
@@ -25,6 +27,10 @@ export const AuthNavigation = () => (
     </Stack.Navigator>
   </NavigationContainer>
 )
+
+const prefix = Linking.createURL('/')
+
+const MainStack = createNativeStackNavigator()
 
 export const MainNavigation = () => {
   const linking = {
