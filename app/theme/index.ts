@@ -19,7 +19,7 @@ export const defaultTheme = {
     "errorContainer": "rgb(255, 218, 214)",
     "onErrorContainer": "rgb(65, 0, 2)",
     "background": "#ffffff",
-    "onBackground": "rgb(53, 53, 53)",
+    "onBackground": "#000000",
     "surface": "rgb(250, 255, 255)",
     "onSurface": "rgb(25, 28, 29)",
     "surfaceVariant": "#16330010",

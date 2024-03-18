@@ -1,24 +1,31 @@
-import React from 'react'
-import { Image } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { ProgressBar, Text, useTheme } from 'react-native-paper'
+import React, { Fragment, useRef, useState } from 'react'
 import styled from 'styled-components/native'
+import PagerView from 'react-native-pager-view'
 import { NavigationProp } from '@react-navigation/native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Animated, {
+  useHandler,
+  useEvent,
+  runOnJS,
+} from 'react-native-reanimated'
+import { Image } from 'react-native'
+import { ProgressBar, Text, useTheme } from 'react-native-paper'
 import { AuthStackParamList } from '../../navigation'
 import { Button } from '../../components'
 
-const Background = styled(SafeAreaView)`
+const AnimatedPager = Animated.createAnimatedComponent(PagerView)
+
+const Container = styled(SafeAreaView)`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
 `
 
-const Container = styled.View`
-  flex: 1;
+const ProgressContainer = styled.View`
   padding: 24px;
 `
 
-const ProgressContainer = styled.View`
-  padding-bottom: 24px;
+const Content = styled.View`
+  flex: 3;
 `
 
 const ImageContainer = styled.View`
@@ -39,11 +46,14 @@ const StyledText = styled(Text)`
   text-align: center;
   font-family: 'black';
   padding-vertical: 4px;
+  text-transform: uppercase;
   color: ${({ theme }) => theme.colors.onBackground};
 `
 
 const ButtonContainer = styled.View`
   flex: 1;
+  padding: 0 24px;
+  justify-content: center;
 `
 
 const Row = styled.View`
@@ -55,103 +65,156 @@ const GoogleSignInButton = styled(Button)`
   margin-top: 16px;
 `
 
-const uri = '../../assets/globe.png'
-
 type Props = {
   navigation: NavigationProp<AuthStackParamList>
 }
 
 const steps = [
   {
-    img: '../../assets/jars.png',
-    description: 'One account for all the money in the world',
+    img: require('../../assets/jars.png'),
+    description: '175 countries. 50 currencies. one account',
   },
   {
-    img: '../../assets/plane.png',
-    description: 'One account for all the money in the world',
+    img: require('../../assets/plane.png'),
+    description: 'Send money and get paid from abroad',
   },
   {
-    img: '../../assets/graph.png',
-    description: 'One account for all the money in the world',
+    img: require('../../assets/graph.png'),
+    description: "It's your money. Boost it with assets",
   },
   {
-    img: '../../assets/globe.png',
+    img: require('../../assets/globe.png'),
     description: 'One account for all the money in the world',
-  }
+  },
 ]
 
+function usePagerScrollHandler(handlers: any, dependencies?: any) {
+  const subscribeForEvents = ['onPageScroll']
+  const handler = useHandler(handlers, dependencies)
+
+  return useEvent<any>(
+    (event) => {
+      'worklet'
+      const { onPageScroll } = handlers
+
+      if (onPageScroll && event.eventName.endsWith('onPageScroll')) {
+        onPageScroll(event, handler.context)
+      }
+    },
+    subscribeForEvents,
+    handler.doDependenciesDiffer,
+  )
+}
+
 export default function Initial({ navigation }: Props): React.JSX.Element {
+  // hooks
   const theme = useTheme()
+  // refs
+  const animatedPagerRef = useRef<PagerView>(null)
+  // state
+  const [currentStep, setCurrentStep] = useState(0)
+  const [totalSteps] = useState(steps.length - 1)
+  const [unityProgress] = useState(1 / totalSteps)
+
+  const handler = usePagerScrollHandler({
+    onPageScroll: (e: any) => {
+      'worklet'
+      runOnJS(setCurrentStep)(e.position)
+    },
+  })
 
   return (
-    <Background>
-      <Container>
-        <ProgressContainer>
-          <ProgressBar
-            progress={1}
-            style={{ height: 6, borderRadius: 8 }}
-            color={theme.colors.onPrimaryContainer}
-          />
-        </ProgressContainer>
+    <Container>
+      <ProgressContainer>
+        <ProgressBar
+          progress={unityProgress * currentStep}
+          style={{ height: 6, borderRadius: 8 }}
+          color={theme.colors.onPrimaryContainer}
+        />
+      </ProgressContainer>
 
-        <ImageContainer>
-          <Image
-            resizeMode="contain"
-            source={require(uri)}
-            style={{ width: '100%', height: '100%' }}
-          />
-        </ImageContainer>
+      <AnimatedPager
+        style={{ flex: 3 }}
+        ref={animatedPagerRef}
+        onPageScroll={handler}
+        initialPage={currentStep}
+        orientation="horizontal"
+        testID="initialScreenPagerView"
+      >
+        {steps.map((step) => (
+          <Content key={step.description}>
+            <ImageContainer>
+              <Image
+                source={step.img}
+                resizeMode="contain"
+                style={{ width: '90%', height: '90%' }}
+              />
+            </ImageContainer>
 
-        <TextContainer>
-          <StyledText variant="bodyMedium">
-            ONE ACCOUNT FOR ALL THE MONEY IN THE WORLD
-          </StyledText>
-        </TextContainer>
+            <TextContainer>
+              <StyledText variant="bodyMedium">{step.description}</StyledText>
+            </TextContainer>
+          </Content>
+        ))}
+      </AnimatedPager>
 
-        <ButtonContainer>
-          <Row>
-            <Button
+      <ButtonContainer>
+        {currentStep === totalSteps ? (
+          <Fragment>
+            <Row>
+              <Button
+                rounded
+                size="large"
+                fontSize={18}
+                fontFamily="bold"
+                style={{ width: '47.5%' }}
+                textColor={theme.colors.onPrimaryContainer}
+                buttonColor={theme.colors.primaryContainer}
+                onPress={() => navigation.navigate('LoginScreen')}
+              >
+                Log in
+              </Button>
+              <Button
+                rounded
+                size="large"
+                fontSize={18}
+                fontFamily="bold"
+                style={{ width: '47.5%' }}
+                textColor={theme.colors.onPrimaryContainer}
+                buttonColor={theme.colors.primaryContainer}
+                onPress={() => navigation.navigate('RegisterScreen')}
+              >
+                Register
+              </Button>
+            </Row>
+
+            <GoogleSignInButton
               rounded
-              size="large"
-              mode="contained"
               fontSize={18}
+              mode="outlined"
               fontFamily="bold"
-              style={{ width: '47.5%' }}
-              textColor={theme.colors.onPrimaryContainer}
-              buttonColor={theme.colors.primaryContainer}
-              onPress={() => navigation.navigate('LoginScreen')}
+              iconName="google"
+              onPress={console.log}
+              textColor={theme.colors.onBackground}
+              buttonColor={theme.colors.background}
             >
-              Log in
-            </Button>
-            <Button
-              rounded
-              size="large"
-              mode="contained"
-              fontSize={18}
-              fontFamily="bold"
-              style={{ width: '47.5%' }}
-              textColor={theme.colors.onPrimaryContainer}
-              buttonColor={theme.colors.primaryContainer}
-              onPress={() => navigation.navigate('RegisterScreen')}
-            >
-              Register
-            </Button>
-          </Row>
-
-          <GoogleSignInButton
+              Sign in with Google
+            </GoogleSignInButton>
+          </Fragment>
+        ) : (
+          <Button
             rounded
-            mode="outlined"
+            size="large"
             fontSize={18}
             fontFamily="bold"
-            iconName="google"
-            onPress={console.log}
-            textColor={theme.colors.onBackground}
-            buttonColor={theme.colors.background}
+            textColor={theme.colors.onPrimaryContainer}
+            buttonColor={theme.colors.primaryContainer}
+            onPress={() => animatedPagerRef.current?.setPage(totalSteps)}
           >
-            Sign in with Google
-          </GoogleSignInButton>
-        </ButtonContainer>
-      </Container>
-    </Background>
+            Get started
+          </Button>
+        )}
+      </ButtonContainer>
+    </Container>
   )
 }
