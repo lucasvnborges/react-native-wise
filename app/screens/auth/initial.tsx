@@ -61,6 +61,25 @@ type Props = {
   navigation: NavigationProp<AuthStackParamList>
 }
 
+const steps = [
+  {
+    img: '../../assets/jars.png',
+    description: 'One account for all the money in the world',
+  },
+  {
+    img: '../../assets/plane.png',
+    description: 'One account for all the money in the world',
+  },
+  {
+    img: '../../assets/graph.png',
+    description: 'One account for all the money in the world',
+  },
+  {
+    img: '../../assets/globe.png',
+    description: 'One account for all the money in the world',
+  }
+]
+
 export default function Initial({ navigation }: Props): React.JSX.Element {
   const theme = useTheme()
 
