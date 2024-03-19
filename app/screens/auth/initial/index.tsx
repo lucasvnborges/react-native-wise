@@ -1,69 +1,25 @@
 import React, { Fragment, useRef, useState } from 'react'
-import styled from 'styled-components/native'
 import PagerView from 'react-native-pager-view'
+import Animated, { runOnJS } from 'react-native-reanimated'
 import { NavigationProp } from '@react-navigation/native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import Animated, {
-  useHandler,
-  useEvent,
-  runOnJS,
-} from 'react-native-reanimated'
+import { usePagerScrollHandler } from '../../../hooks/pagerScrollHandler'
 import { Image } from 'react-native'
-import { ProgressBar, Text, useTheme } from 'react-native-paper'
-import { AuthStackParamList } from '../../navigation'
-import { Button } from '../../components'
+import { ProgressBar, useTheme } from 'react-native-paper'
+import { AuthStackParamList } from '../../../navigation'
+import { Button } from '../../../components'
+import {
+  Container,
+  ProgressContainer,
+  Content,
+  ImageContainer,
+  TextContainer,
+  StyledText,
+  ButtonContainer,
+  Row,
+  GoogleSignInButton,
+} from './styles'
 
 const AnimatedPager = Animated.createAnimatedComponent(PagerView)
-
-const Container = styled(SafeAreaView)`
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.background};
-`
-
-const ProgressContainer = styled.View`
-  padding: 24px;
-`
-
-const Content = styled.View`
-  flex: 3;
-`
-
-const ImageContainer = styled.View`
-  flex: 3;
-  align-items: center;
-  justify-content: flex-end;
-`
-
-const TextContainer = styled.View`
-  flex: 2;
-  align-items: center;
-  justify-content: center;
-`
-
-const StyledText = styled(Text)`
-  font-size: 38px;
-  line-height: 36px;
-  text-align: center;
-  font-family: 'black';
-  padding-vertical: 4px;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.onBackground};
-`
-
-const ButtonContainer = styled.View`
-  flex: 1;
-  padding: 0 24px;
-  justify-content: center;
-`
-
-const Row = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-`
-
-const GoogleSignInButton = styled(Button)`
-  margin-top: 16px;
-`
 
 type Props = {
   navigation: NavigationProp<AuthStackParamList>
@@ -71,40 +27,22 @@ type Props = {
 
 const steps = [
   {
-    img: require('../../assets/jars.png'),
+    img: require('../../../assets/jars.png'),
     description: '175 countries. 50 currencies. one account',
   },
   {
-    img: require('../../assets/plane.png'),
+    img: require('../../../assets/plane.png'),
     description: 'Send money and get paid from abroad',
   },
   {
-    img: require('../../assets/graph.png'),
+    img: require('../../../assets/graph.png'),
     description: "It's your money. Boost it with assets",
   },
   {
-    img: require('../../assets/globe.png'),
+    img: require('../../../assets/globe.png'),
     description: 'One account for all the money in the world',
   },
 ]
-
-function usePagerScrollHandler(handlers: any, dependencies?: any) {
-  const subscribeForEvents = ['onPageScroll']
-  const handler = useHandler(handlers, dependencies)
-
-  return useEvent<any>(
-    (event) => {
-      'worklet'
-      const { onPageScroll } = handlers
-
-      if (onPageScroll && event.eventName.endsWith('onPageScroll')) {
-        onPageScroll(event, handler.context)
-      }
-    },
-    subscribeForEvents,
-    handler.doDependenciesDiffer,
-  )
-}
 
 export default function Initial({ navigation }: Props): React.JSX.Element {
   // hooks
