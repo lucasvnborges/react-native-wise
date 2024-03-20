@@ -24,12 +24,12 @@
     },
     "extra": {
       "eas": {
-        "projectId": "534317f4-eac7-45c6-860f-43ed7726d565"
+        "projectId": ""
       }
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/534317f4-eac7-45c6-860f-43ed7726d565"
+      "url": ""
     },
     "plugins": ["@config-plugins/detox"]
   }
