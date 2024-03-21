@@ -35,7 +35,10 @@ const Home: React.FC = () => {
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <Header />
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 200 }}
+      >
         <View style={{ marginTop: 32, paddingHorizontal: 16 }}>
           <Text style={{ fontFamily: 'regular', fontSize: 16 }}>
             Total balance
