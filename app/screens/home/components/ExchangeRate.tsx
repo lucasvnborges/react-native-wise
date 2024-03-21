@@ -35,8 +35,6 @@ const ExchangeRate = () => {
   // state
   const [points, setPoints] = useState(POINTS)
 
-  useEffect(() => console.log(JSON.stringify(points)), [])
-
   return (
     <ExchangeRateContainer>
       <ExchangeRateInfoWrapper>
