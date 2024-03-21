@@ -33,7 +33,7 @@ const ExchangeRate = () => {
   // hooks
   const theme = useTheme()
   // state
-  const [points, setPoints] = useState(POINTS)
+  const [points] = useState(POINTS)
 
   return (
     <ExchangeRateContainer>
