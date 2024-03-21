@@ -2910,6 +2910,11 @@
   dependencies:
     "@babel/types" "^7.20.7"
 
+"@types/gaussian@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/gaussian/-/gaussian-1.2.2.tgz#99b1a7fda58acb12b0941653b4f4c22e86b9df8b"
+  integrity sha512-FLlJb9oGcoq0xVaAmn5ytZWeEO4M7nfudewzqL6FxUUYLR5FB+hEzSYAsuhX7H7M6Mw/Z0rLbIVbQkMqHlRS7g==
+
 "@types/glob@*":
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-8.1.0.tgz#b63e70155391b0584dce44e7ea25190bbc38f2fc"
@@ -5922,6 +5927,11 @@ funpermaproxy@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/funpermaproxy/-/funpermaproxy-1.1.0.tgz#39cb0b8bea908051e4608d8a414f1d87b55bf557"
   integrity sha512-2Sp1hWuO8m5fqeFDusyhKqYPT+7rGLw34N3qonDcdRP8+n7M7Gl/yKp/q7oCxnnJ6pWCectOmLFJpsMU/++KrQ==
+
+gaussian@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/gaussian/-/gaussian-1.3.0.tgz#c550b01b59ca5ed2e54ca89b6584a359f167e5d5"
+  integrity sha512-rYQ0ESfB+z0t7G95nHH80Zh7Pgg9A0FUYoZqV0yPec5WJZWKIHV2MPYpiJNy8oZAeVqyKwC10WXKSCnUQ5iDVg==
 
 genfun@^5.0.0:
   version "5.0.0"
