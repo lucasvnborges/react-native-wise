@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/native'
 import { View } from 'react-native'
 import { Text, useTheme } from 'react-native-paper'
-import { SmallButton } from '../../../components/Paper'
 import { LineGraph } from 'react-native-graph'
+import { SmallButton } from '../../../components/Paper'
 import { SelectionDot } from './CustomSelectionDot'
 import { generateRandomGraphData } from '../../../utils/generateRandomGraph'
 
