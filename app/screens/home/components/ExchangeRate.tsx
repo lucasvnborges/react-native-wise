@@ -106,7 +106,7 @@ const ExchangeRate = () => {
             fontFamily: 'regular',
           }}
         >
-          A month agora
+          A month ago
         </Text>
         <Text
           style={{
