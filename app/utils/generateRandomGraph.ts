@@ -13,6 +13,6 @@ export function generateRandomGraphData(length: number): any {
       date: new Date(
         new Date(2000, 0, 1).getTime() + 1000 * 60 * 60 * 24 * index,
       ),
-      value: (Math.random() * 0.5 + 3).toFixed(5),
+      value: (Math.random() * 0.35 + 3.1).toFixed(4),
     }))
 }
