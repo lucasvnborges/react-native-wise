@@ -34,7 +34,7 @@ export const defaultTheme = {
     "elevation": {
       "level0": "transparent",
       "level1": "rgba(25, 28, 29, 0.12)",
-      "level2": "rgb(230, 241, 242)",
+      "level2": "#16330070",
       "level3": "rgb(223, 237, 238)",
       "level4": "rgb(220, 235, 237)",
       "level5": "rgb(215, 232, 234)"
