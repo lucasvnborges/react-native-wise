@@ -48,7 +48,7 @@ const Header = () => {
           <Text
             style={{
               height: 22,
-              fontSize: 12,
+              fontSize: 14,
               alignSelf: 'center',
               fontFamily: 'semibold',
             }}
