@@ -34,13 +34,14 @@ const ExchangeRate = () => {
   const theme = useTheme()
   // state
   const [points] = useState(POINTS)
+  const [exchangeRate, setExchangeRate] = useState(points[points.length - 1].value)
 
   return (
     <ExchangeRateContainer>
       <ExchangeRateInfoWrapper>
         <ExchangeRateInfo>
           <Text style={{ fontFamily: 'semibold', fontSize: 20 }}>
-            1 AUD = 3.30 BRL
+            1 AUD = {exchangeRate} BRL
           </Text>
           <Text style={{ fontFamily: 'regular', fontSize: 16, marginTop: 4 }}>
             Today
@@ -66,27 +67,66 @@ const ExchangeRate = () => {
         </SmallButton>
       </ExchangeRateInfoWrapper>
 
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
         <LineGraph
           style={{
-            width: '100%',
+            width: '84%',
             aspectRatio: 1.5,
+            marginVertical: 24,
             alignSelf: 'center',
-            paddingVertical: 40,
           }}
-          points={points}
           animated
+          points={points}
           enableIndicator
           enablePanGesture
           indicatorPulsating
           lineThickness={3.5}
-          horizontalPadding={20}
+          horizontalPadding={16}
           SelectionDot={SelectionDot}
           color={theme.colors.onPrimaryContainer}
-          // onGestureStart={() => hapticFeedback('impactLight')}
-          // onPointSelected={(p) => updatePriceTitle(p)}
+          onPointSelected={(p) => setExchangeRate(p.value)}
           // onGestureEnd={() => resetPriceTitle()}
+          // onGestureStart={() => hapticFeedback('impactLight')}
         />
+
+        <View
+          style={{
+            padding: 16,
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 16,
+              alignSelf: 'center',
+              fontFamily: 'regular',
+              color: theme.colors.elevation.level2,
+            }}
+          >
+            3.50
+          </Text>
+          <Text
+            style={{
+              fontSize: 16,
+              alignSelf: 'center',
+              fontFamily: 'regular',
+              color: theme.colors.elevation.level2,
+            }}
+          >
+            3.25
+          </Text>
+          <Text
+            style={{
+              fontSize: 16,
+              alignSelf: 'center',
+              fontFamily: 'regular',
+              color: theme.colors.elevation.level2,
+            }}
+          >
+            3.00
+          </Text>
+        </View>
       </View>
 
       <View
@@ -94,9 +134,9 @@ const ExchangeRate = () => {
           flexDirection: 'row',
           alignItems: 'flex-end',
           justifyContent: 'space-between',
-          borderTopWidth: 1,
-          borderTopColor: '#d5d6d7',
           paddingTop: 20,
+          borderTopWidth: 1,
+          borderTopColor: theme.colors.elevation.level1,
         }}
       >
         <Text
