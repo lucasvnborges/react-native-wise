@@ -5,8 +5,8 @@ import { Text, useTheme } from 'react-native-paper'
 // components
 import Icon from '../../components/Icon'
 import { SmallButton } from '../../components/Paper'
-import WalletCard from './components/Wallet'
 import Header from './components/Header'
+import WalletCard from './components/WalletCard'
 import ExchangeRate from './components/ExchangeRate'
 // utils
 import { maskBalance } from '../../utils/mask'
