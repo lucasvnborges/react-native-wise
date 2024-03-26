@@ -6,7 +6,7 @@ import {
   useSharedValue,
 } from 'react-native-reanimated'
 import { Circle } from '@shopify/react-native-skia'
-import type { SelectionDotProps } from 'react-native-graph'
+import type { SelectionDotProps } from 'react-native-line-graph'
 
 export function SelectionDot({
   isActive,
