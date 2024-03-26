@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Avatar, Text } from 'react-native-paper';
+import { maskBalance } from '../../../utils/mask';
 
 const ListItemContainer = styled.View`
   width: 280px;
@@ -23,7 +24,7 @@ const BalanceText = styled.Text`
   color: ${({ theme }) => theme.colors.onBackground};
 `;
 
-const WalletCard = ({ item, index, isLast }) => {
+const WalletCard = ({ item, isLast, balanceIsVisible }) => {
   return (
     <ListItemContainer isLast={isLast}>
       <AvatarContainer>
@@ -32,7 +33,7 @@ const WalletCard = ({ item, index, isLast }) => {
           {item.text}
         </Text>
       </AvatarContainer>
-      <BalanceText>****</BalanceText>
+      <BalanceText>{maskBalance(item.balance, balanceIsVisible)}</BalanceText>
     </ListItemContainer>
   );
 };

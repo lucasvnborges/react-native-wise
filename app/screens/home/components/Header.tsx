@@ -1,9 +1,9 @@
 import React from 'react'
+import styled from 'styled-components/native'
 import { View } from 'react-native'
 import { useTheme, Avatar, IconButton, Text } from 'react-native-paper'
-import styled from 'styled-components/native'
 import { SmallButton } from '../../../components/Paper'
-import { Icon } from '../../../components/Icon'
+import Icon from '../../../components/Icon'
 import { useAuth } from '@realm/react'
 
 const HeaderContainer = styled.View`
@@ -23,9 +23,10 @@ const EarnButton = styled(SmallButton)`
   margin-right: 8px;
 `
 
-const Header = () => {
-  const theme = useTheme()
+const Header: React.FC<any> = ({ balanceIsVisible, handlePressEye }) => {
+  // hooks
   const auth = useAuth()
+  const theme = useTheme()
 
   return (
     <HeaderContainer>
@@ -62,13 +63,13 @@ const Header = () => {
           mode="contained"
           testID="closeButton"
           iconColor={theme.colors.primary}
-          onPress={() => auth.logOut()}
+          onPress={() => handlePressEye(!balanceIsVisible)}
           icon={() => (
             <Icon
               box={16}
               size={20}
-              name="eyeOff"
               color={theme.colors.onSurfaceVariant}
+              name={balanceIsVisible ? "eyeOn" : "eyeOff"}
             />
           )}
         />
