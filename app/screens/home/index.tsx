@@ -42,7 +42,7 @@ const Home: React.FC = () => {
     return (
       <WalletCard
         item={item}
-        isLast={index === data.length}
+        isLast={index + 1 === data.length}
         balanceIsVisible={balanceIsVisible}
       />
     )
