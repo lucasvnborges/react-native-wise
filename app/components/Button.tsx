@@ -4,7 +4,7 @@ import {
   Button as PaperButton,
   ButtonProps as PaperButtonProps,
 } from 'react-native-paper'
-import { Icon, IconNames } from './Icon'
+import Icon, { IconNames } from './Icon'
 
 type FontFamily = 'regular' | 'medium' | 'semibold' | 'bold' | 'extra' | 'black'
 
