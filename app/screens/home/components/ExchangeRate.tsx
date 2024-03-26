@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
 import { View } from 'react-native'
 import { Text, useTheme } from 'react-native-paper'
@@ -36,6 +36,10 @@ const ExchangeRate = () => {
   const [points] = useState(POINTS)
   const [exchangeRate, setExchangeRate] = useState(points[points.length - 1].value)
 
+  useEffect(() => {
+    console.log(points)
+  }, [])
+  
   return (
     <ExchangeRateContainer>
       <ExchangeRateInfoWrapper>

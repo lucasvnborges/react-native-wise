@@ -26,10 +26,11 @@ const TextContainer = styled.View`
   flex: 2;
   align-items: center;
   justify-content: center;
+  padding-horizontal: 12px;
 `
 
 const StyledText = styled(Text)`
-  font-size: 38px;
+  font-size: 32px;
   line-height: 36px;
   text-align: center;
   font-family: 'black';
