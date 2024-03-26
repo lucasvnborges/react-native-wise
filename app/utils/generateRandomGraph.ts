@@ -1,5 +1,5 @@
 import gaussian from 'gaussian'
-import type { GraphPoint } from 'react-native-graph'
+import type { GraphPoint } from 'react-native-line-graph'
 
 export function weightedRandom(
   mean: number,

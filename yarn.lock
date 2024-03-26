@@ -9816,10 +9816,9 @@ react-native-get-random-values@~1.9.0:
   dependencies:
     fast-base64-decode "^1.0.0"
 
-react-native-graph@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-graph/-/react-native-graph-1.1.0.tgz#b0a98f96dc386d1a95aeec822a5db94ec9c3d3b4"
-  integrity sha512-jcPLfhOOzjNaug1yw4Y6RecqMTdsiW0dQD+VruOpgzUUIZivNHIQD4LCp3vqdpqhok/nqggviuHVAYQv1ICRTw==
+"react-native-line-graph@https://github.com/lucasvnborges/react-native-line-graph":
+  version "0.0.1"
+  resolved "https://github.com/lucasvnborges/react-native-line-graph#e578b71c67bbfbeaa1f0308cdd22ba47c6f63153"
 
 react-native-pager-view@6.2.0:
   version "6.2.0"
