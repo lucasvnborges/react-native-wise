@@ -8,8 +8,12 @@ import { SelectionDot } from './CustomSelectionDot'
 import { generateRandomGraphData } from '../../../utils/generateRandomGraph'
 
 const ExchangeRateContainer = styled.View`
-  margin: 16px;
+  padding: 16px;
+`
+
+const ExchangeRateCard = styled.View`
   padding: 24px;
+  margin-top: 24px;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.colors.surfaceVariant};
 `
@@ -34,70 +38,120 @@ const ExchangeRate = () => {
   const theme = useTheme()
   // state
   const [points] = useState(POINTS)
-  const [exchangeRate, setExchangeRate] = useState(points[points.length - 1].value)
+  const [exchangeRate, setExchangeRate] = useState(
+    points[points.length - 1].value,
+  )
 
   useEffect(() => {
     console.log(points)
   }, [])
-  
+
   return (
     <ExchangeRateContainer>
-      <ExchangeRateInfoWrapper>
-        <ExchangeRateInfo>
-          <Text style={{ fontFamily: 'semibold', fontSize: 20 }}>
-            1 AUD = {exchangeRate} BRL
-          </Text>
-          <Text style={{ fontFamily: 'regular', fontSize: 16, marginTop: 4 }}>
-            Today
-          </Text>
-        </ExchangeRateInfo>
-        <SmallButton
-          compact
-          mode="contained"
-          onPress={console.log}
-          textColor={theme.colors.onPrimaryContainer}
-          buttonColor={theme.colors.primaryContainer}
-        >
-          <Text
+      <Text style={{ fontFamily: 'semibold', fontSize: 24 }}>
+        Exchange rate
+      </Text>
+
+      <ExchangeRateCard>
+        <ExchangeRateInfoWrapper>
+          <ExchangeRateInfo>
+            <Text style={{ fontFamily: 'semibold', fontSize: 20 }}>
+              1 AUD = {exchangeRate} BRL
+            </Text>
+            <Text style={{ fontFamily: 'regular', fontSize: 16, marginTop: 4 }}>
+              Today
+            </Text>
+          </ExchangeRateInfo>
+          <SmallButton
+            compact
+            mode="contained"
+            onPress={console.log}
+            textColor={theme.colors.onPrimaryContainer}
+            buttonColor={theme.colors.primaryContainer}
+          >
+            <Text
+              style={{
+                height: 21,
+                fontSize: 16,
+                alignSelf: 'center',
+                fontFamily: 'semibold',
+              }}
+            >
+              Edit
+            </Text>
+          </SmallButton>
+        </ExchangeRateInfoWrapper>
+
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <LineGraph
             style={{
-              height: 21,
-              fontSize: 16,
+              width: '84%',
+              aspectRatio: 1.5,
+              marginVertical: 24,
               alignSelf: 'center',
-              fontFamily: 'semibold',
+            }}
+            animated
+            points={points}
+            enableIndicator
+            enablePanGesture
+            indicatorPulsating
+            lineThickness={3.5}
+            horizontalPadding={16}
+            SelectionDot={SelectionDot}
+            color={theme.colors.onPrimaryContainer}
+            onPointSelected={(p) => setExchangeRate(p.value)}
+            // onGestureEnd={() => resetPriceTitle()}
+            // onGestureStart={() => hapticFeedback('impactLight')}
+          />
+
+          <View
+            style={{
+              padding: 16,
+              flexDirection: 'column',
+              justifyContent: 'space-between',
             }}
           >
-            Edit
-          </Text>
-        </SmallButton>
-      </ExchangeRateInfoWrapper>
-
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <LineGraph
-          style={{
-            width: '84%',
-            aspectRatio: 1.5,
-            marginVertical: 24,
-            alignSelf: 'center',
-          }}
-          animated
-          points={points}
-          enableIndicator
-          enablePanGesture
-          indicatorPulsating
-          lineThickness={3.5}
-          horizontalPadding={16}
-          SelectionDot={SelectionDot}
-          color={theme.colors.onPrimaryContainer}
-          onPointSelected={(p) => setExchangeRate(p.value)}
-          // onGestureEnd={() => resetPriceTitle()}
-          // onGestureStart={() => hapticFeedback('impactLight')}
-        />
+            <Text
+              style={{
+                fontSize: 16,
+                alignSelf: 'center',
+                fontFamily: 'regular',
+                color: theme.colors.elevation.level2,
+              }}
+            >
+              3.50
+            </Text>
+            <Text
+              style={{
+                fontSize: 16,
+                alignSelf: 'center',
+                fontFamily: 'regular',
+                color: theme.colors.elevation.level2,
+              }}
+            >
+              3.25
+            </Text>
+            <Text
+              style={{
+                fontSize: 16,
+                alignSelf: 'center',
+                fontFamily: 'regular',
+                color: theme.colors.elevation.level2,
+              }}
+            >
+              3.00
+            </Text>
+          </View>
+        </View>
 
         <View
           style={{
-            padding: 16,
-            flexDirection: 'column',
+            flexDirection: 'row',
+            alignItems: 'flex-end',
             justifyContent: 'space-between',
+            paddingTop: 20,
+            borderTopWidth: 1,
+            borderTopColor: theme.colors.elevation.level1,
           }}
         >
           <Text
@@ -105,63 +159,21 @@ const ExchangeRate = () => {
               fontSize: 16,
               alignSelf: 'center',
               fontFamily: 'regular',
-              color: theme.colors.elevation.level2,
             }}
           >
-            3.50
+            A month ago
           </Text>
           <Text
             style={{
               fontSize: 16,
               alignSelf: 'center',
               fontFamily: 'regular',
-              color: theme.colors.elevation.level2,
             }}
           >
-            3.25
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              alignSelf: 'center',
-              fontFamily: 'regular',
-              color: theme.colors.elevation.level2,
-            }}
-          >
-            3.00
+            Today
           </Text>
         </View>
-      </View>
-
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'flex-end',
-          justifyContent: 'space-between',
-          paddingTop: 20,
-          borderTopWidth: 1,
-          borderTopColor: theme.colors.elevation.level1,
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 16,
-            alignSelf: 'center',
-            fontFamily: 'regular',
-          }}
-        >
-          A month ago
-        </Text>
-        <Text
-          style={{
-            fontSize: 16,
-            alignSelf: 'center',
-            fontFamily: 'regular',
-          }}
-        >
-          Today
-        </Text>
-      </View>
+      </ExchangeRateCard>
     </ExchangeRateContainer>
   )
 }
