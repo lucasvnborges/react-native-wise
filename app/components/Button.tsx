@@ -9,7 +9,7 @@ import Icon, { IconNames } from './Icon'
 type FontFamily = 'regular' | 'medium' | 'semibold' | 'bold' | 'extra' | 'black'
 
 interface ButtonProps extends PaperButtonProps {
-  size?: 'small' | 'medium' | 'large'
+  size?: 'xsmall' | 'small' | 'medium' | 'large'
   fontSize?: number
   fontFamily?: FontFamily
   iconName?: IconNames
@@ -20,6 +20,7 @@ interface ButtonProps extends PaperButtonProps {
 }
 
 const heights = {
+  xsmall: 32,
   small: 38,
   medium: 50,
   large: 60,
