@@ -10,6 +10,7 @@ import WalletCard from './components/WalletCard'
 import ExchangeRate from './components/ExchangeRate'
 // utils
 import { maskBalance } from '../../utils/mask'
+import Actions from './components/Actions'
 
 const data = [
   {
@@ -68,125 +69,23 @@ const Home: React.FC = () => {
           </Text>
         </View>
 
-        <View
-          style={{
-            marginVertical: 16,
-            paddingHorizontal: 16,
-            flexDirection: 'row',
+        <Actions />
+
+        <FlatList
+          horizontal
+          data={data}
+          pagingEnabled
+          snapToInterval={304}
+          decelerationRate="fast"
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            padding: 16,
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
-        >
-          <SmallButton
-            compact
-            mode="contained"
-            onPress={console.log}
-            style={{ marginRight: 12 }}
-            textColor={theme.colors.onPrimaryContainer}
-            buttonColor={theme.colors.primaryContainer}
-            icon={() => (
-              <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Icon
-                  size={18}
-                  name="arrowUp"
-                  color={theme.colors.onSurfaceVariant}
-                />
-              </View>
-            )}
-          >
-            <Text
-              style={{
-                height: 21,
-                fontSize: 16,
-                alignSelf: 'center',
-                fontFamily: 'semibold',
-              }}
-            >
-              Send
-            </Text>
-          </SmallButton>
-          <SmallButton
-            compact
-            mode="contained"
-            onPress={console.log}
-            style={{ marginRight: 12 }}
-            textColor={theme.colors.onSurfaceVariant}
-            buttonColor={theme.colors.surfaceVariant}
-            icon={() => (
-              <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Icon
-                  size={18}
-                  name="plus"
-                  color={theme.colors.onSurfaceVariant}
-                />
-              </View>
-            )}
-          >
-            <Text
-              style={{
-                height: 21,
-                fontSize: 16,
-                alignSelf: 'center',
-                fontFamily: 'semibold',
-              }}
-            >
-              Add money
-            </Text>
-          </SmallButton>
-          <SmallButton
-            compact
-            mode="contained"
-            onPress={console.log}
-            style={{ marginRight: 12 }}
-            textColor={theme.colors.onSurfaceVariant}
-            buttonColor={theme.colors.surfaceVariant}
-            icon={() => (
-              <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Icon
-                  size={18}
-                  name="arrowDown"
-                  color={theme.colors.onSurfaceVariant}
-                />
-              </View>
-            )}
-          >
-            <Text
-              style={{
-                height: 21,
-                fontSize: 16,
-                alignSelf: 'center',
-                fontFamily: 'semibold',
-              }}
-            >
-              Request
-            </Text>
-          </SmallButton>
-        </View>
-
-        <View style={{ flex: 1 }}>
-          <FlatList
-            horizontal
-            data={data}
-            pagingEnabled
-            snapToInterval={304}
-            decelerationRate="fast"
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{
-              paddingTop: 16,
-              paddingHorizontal: 16,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          />
-        </View>
-
-        <View
-          style={{ paddingTop: 50, paddingBottom: 6, paddingHorizontal: 16 }}
-        >
-          <Text style={{ fontFamily: 'semibold', fontSize: 26 }}>
-            Exchange rate
-          </Text>
-        </View>
+        />
 
         <ExchangeRate />
       </ScrollView>
