@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components/native'
 import { View } from 'react-native'
 import { useTheme, Avatar, IconButton, Text } from 'react-native-paper'
-import { SmallButton } from '../../../components/Paper'
+import { Button } from '../../../components'
 import Icon from '../../../components/Icon'
-import { useAuth } from '@realm/react'
 
 const HeaderContainer = styled.View`
   height: 60px;
@@ -19,13 +18,12 @@ const HeaderContainer = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
 `
 
-const EarnButton = styled(SmallButton)`
+const EarnButton = styled(Button)`
   margin-right: 8px;
 `
 
 const Header: React.FC<any> = ({ balanceIsVisible, handlePressEye }) => {
   // hooks
-  const auth = useAuth()
   const theme = useTheme()
 
   return (
@@ -41,6 +39,7 @@ const Header: React.FC<any> = ({ balanceIsVisible, handlePressEye }) => {
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <EarnButton
           compact
+          size="xsmall"
           mode="contained"
           onPress={console.log}
           textColor={theme.colors.onPrimaryContainer}
@@ -48,7 +47,7 @@ const Header: React.FC<any> = ({ balanceIsVisible, handlePressEye }) => {
         >
           <Text
             style={{
-              height: 22,
+              height: 21,
               fontSize: 14,
               alignSelf: 'center',
               fontFamily: 'semibold',
@@ -69,7 +68,7 @@ const Header: React.FC<any> = ({ balanceIsVisible, handlePressEye }) => {
               box={16}
               size={20}
               color={theme.colors.onSurfaceVariant}
-              name={balanceIsVisible ? "eyeOn" : "eyeOff"}
+              name={balanceIsVisible ? 'eyeOn' : 'eyeOff'}
             />
           )}
         />
