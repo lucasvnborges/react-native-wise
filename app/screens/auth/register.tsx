@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { View, StyleSheet, Keyboard, ScrollView } from 'react-native'
 import { Realm, useApp } from '@realm/react'
-import { Text, TextInput, useTheme, IconButton } from 'react-native-paper'
-import { Button } from '../../components/Paper'
 import { StatusBar } from 'expo-status-bar'
 import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { Text, TextInput, useTheme, IconButton } from 'react-native-paper'
+import { Button } from '../../components/Paper'
 
 export enum AuthState {
   None,
@@ -15,47 +15,18 @@ export enum AuthState {
 }
 
 const RegisterScreen = () => {
+  // hooks
   const theme = useTheme()
   const navigation = useNavigation()
+  // realm
   const app = useApp()
+  // ref
   const refPassword = useRef(null)
-
+  // state
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [authState, setAuthState] = useState(AuthState.None)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false)
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true)
-      },
-    )
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false)
-      },
-    )
-
-    return () => {
-      keyboardDidHideListener.remove()
-      keyboardDidShowListener.remove()
-    }
-  }, [])
-
-  const handleLogin = useCallback(async () => {
-    setAuthState(AuthState.Loading)
-    const credentials = Realm.Credentials.emailPassword(email, password)
-    try {
-      await app.logIn(credentials)
-      setAuthState(AuthState.None)
-    } catch (e) {
-      setAuthState(AuthState.LoginError)
-    }
-  }, [email, password, setAuthState, app])
 
   const handleRegister = useCallback(async () => {
     setAuthState(AuthState.Loading)
@@ -240,7 +211,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 12,
     paddingVertical: 32,
-    // justifyContent: 'center',
   },
   inputContainer: {
     paddingVertical: 8,
