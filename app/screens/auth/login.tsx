@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { View, Keyboard, ScrollView } from 'react-native'
+import React, { useCallback, useRef, useState } from 'react'
+import { View, ScrollView } from 'react-native'
 import { Realm, useApp } from '@realm/react'
 import { Text, useTheme, IconButton } from 'react-native-paper'
 import { NavigationProp } from '@react-navigation/native'
@@ -67,39 +67,15 @@ const StyledButton = styled(Button)`
 export default function LoginScreen({ navigation }: Props) {
   // hooks
   const theme = useTheme()
-
   // realm
   const { logIn } = useApp()
-
   // ref
   const refPassword = useRef(null)
-
   // state
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [authState, setAuthState] = useState(AuthState.None)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
-  const [isKeyboardVisible, setKeyboardVisible] = useState(false)
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true)
-      },
-    )
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false)
-      },
-    )
-
-    return () => {
-      keyboardDidHideListener.remove()
-      keyboardDidShowListener.remove()
-    }
-  }, [])
 
   const handleLogin = useCallback(async () => {
     setAuthState(AuthState.Loading)
