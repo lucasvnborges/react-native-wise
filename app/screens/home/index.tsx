@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { FlatList, ScrollView, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 // libs
 import { Text, useTheme } from 'react-native-paper'
 // components
 import Header from './components/Header'
-import WalletCard from './components/WalletCard'
-import ExchangeRate from './components/ExchangeRate'
 import Actions from './components/Actions'
+import Wallets from './components/Wallets'
+import ExchangeRate from './components/ExchangeRate'
 // utils
 import { maskBalance } from '../../utils/mask'
 
@@ -31,21 +31,11 @@ const data = [
   },
 ]
 
-const Home: React.FC = () => {
+export default function Home() {
   // hooks
   const theme = useTheme()
   // state
   const [balanceIsVisible, setBalanceIsVisible] = useState(true)
-
-  const renderItem = ({ item, index }) => {
-    return (
-      <WalletCard
-        item={item}
-        isLast={index + 1 === data.length}
-        balanceIsVisible={balanceIsVisible}
-      />
-    )
-  }
 
   return (
     <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
@@ -69,26 +59,10 @@ const Home: React.FC = () => {
 
         <Actions />
 
-        <FlatList
-          horizontal
-          data={data}
-          pagingEnabled
-          snapToInterval={304}
-          decelerationRate="fast"
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{
-            padding: 16,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        />
+        <Wallets data={data} balanceIsVisible={balanceIsVisible} />
 
         <ExchangeRate />
       </ScrollView>
     </View>
   )
 }
-
-export default Home
