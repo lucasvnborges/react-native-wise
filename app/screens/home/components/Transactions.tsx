@@ -10,7 +10,16 @@ const data = [
   }
 ]
 
+type RenderItemProps = {
+  item: any;
+}
+
 export default function Transactions() {
+  
+  const renderItem = ({ item }: RenderItemProps) => {
+
+  }
+
   return (
     <View>
       <Text>Transactions</Text>
