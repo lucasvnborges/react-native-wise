@@ -3,14 +3,12 @@ import { FlatList, ScrollView, View } from 'react-native'
 // libs
 import { Text, useTheme } from 'react-native-paper'
 // components
-import Icon from '../../components/Icon'
-import { SmallButton } from '../../components/Paper'
 import Header from './components/Header'
 import WalletCard from './components/WalletCard'
 import ExchangeRate from './components/ExchangeRate'
+import Actions from './components/Actions'
 // utils
 import { maskBalance } from '../../utils/mask'
-import Actions from './components/Actions'
 
 const data = [
   {
