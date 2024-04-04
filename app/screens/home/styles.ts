@@ -24,14 +24,14 @@ export const BalanceContainer = styled.View`
 `
 
 export const BalanceText = styled.Text`
-  font-family: regular;
   font-size: 16px;
+  font-family: regular;
 `
 
 export const ActionButtonsContainer = styled.View`
+  flex-direction: row;
   margin-vertical: 16px;
   padding-horizontal: 16px;
-  flex-direction: row;
 `
 
 export const ExchangeRateContainer = styled.View`
@@ -41,6 +41,6 @@ export const ExchangeRateContainer = styled.View`
 `
 
 export const ExchangeRateText = styled.Text`
-  font-family: semibold;
   font-size: 26px;
+  font-family: semibold;
 `
