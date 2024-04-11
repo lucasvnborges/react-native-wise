@@ -4,7 +4,9 @@ import { CommonActions } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Text, BottomNavigation, useTheme } from 'react-native-paper'
 import Svg, { Path } from 'react-native-svg'
+// screens
 import HomeScreen from '../screens/home'
+import CardScreen from '../screens/card'
 
 const Home = (props: any) => (
   <Svg
@@ -100,11 +102,13 @@ export default function AppSync() {
           }) => (
             <Text
               style={{
-                fontSize: 13,
+                fontSize: 12,
                 marginTop: 1,
                 textAlign: 'center',
-                fontFamily: 'semibold',
-                color: props.focused ? theme.colors.onPrimaryContainer : theme.colors.onBackground,
+                // fontFamily: 'semibold',
+                color: props.focused
+                  ? theme.colors.primary
+                  : '#888',
               }}
             >
               {props.route.name}
@@ -137,28 +141,17 @@ export default function AppSync() {
               })
             }
           }}
-          renderIcon={({ route, focused, color }) => {
+          renderIcon={({ route, focused }) => {
             const { options } = descriptors[route.key]
             if (options.tabBarIcon) {
               return options.tabBarIcon({
                 focused,
-                size: 30,
-                color: focused ? color : theme.colors.onBackground,
+                size: 26,
+                color: focused ? theme.colors.primary : '#888',
               })
             }
 
             return null
-          }}
-          getLabelText={({ route }) => {
-            const { options } = descriptors[route.key]
-            const label =
-              options.tabBarLabel !== undefined
-                ? options.tabBarLabel
-                : options.title !== undefined
-                ? options.title
-                : route.title
-
-            return label
           }}
         />
       )}
@@ -174,8 +167,8 @@ export default function AppSync() {
         }}
       />
       <Tab.Screen
-        name="Card"
-        component={SettingsScreen}
+        name="Cards"
+        component={CardScreen}
         options={{
           // tabBarLabel: 'Card',
           tabBarIcon: ({ color, size }) => {
