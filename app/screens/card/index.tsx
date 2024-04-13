@@ -135,8 +135,8 @@ export default function Card() {
         <Row>
           <Row>
             <AntDesign
-              name="apple1"
               size={20}
+              name="apple1"
               color={theme.colors.onBackground}
             />
             <Text
