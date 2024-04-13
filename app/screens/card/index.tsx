@@ -187,10 +187,10 @@ export default function Card() {
 
         {manageCardOptions.map((option: any, index) => (
           <TouchableRipple
-            key={`manage-card-option-${index}`}
-            style={{ paddingHorizontal: 24, paddingVertical: 16 }}
             rippleColor="rgba(0, 0, 0, .05)"
+            key={`manage-card-option-${index}`}
             onPress={() => console.log('Pressed')}
+            style={{ paddingHorizontal: 24, paddingVertical: 16 }}
           >
             <Row>
               <Row>
