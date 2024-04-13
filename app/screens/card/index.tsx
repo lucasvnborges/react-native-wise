@@ -210,8 +210,8 @@ export default function Card() {
               </Row>
 
               <AntDesign
-                name="right"
                 size={18}
+                name="right"
                 color={theme.colors.onBackground}
               />
             </Row>
