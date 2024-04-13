@@ -200,9 +200,9 @@ export default function Card() {
 
                 <Text
                   style={{
-                    fontFamily: 'semibold',
                     fontSize: 16,
                     marginLeft: 16,
+                    fontFamily: 'semibold',
                   }}
                 >
                   {option.label}
