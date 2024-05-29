@@ -135,8 +135,8 @@ export default function Card() {
         <Row>
           <Row>
             <AntDesign
-              name="apple1"
               size={20}
+              name="apple1"
               color={theme.colors.onBackground}
             />
             <Text
@@ -187,10 +187,10 @@ export default function Card() {
 
         {manageCardOptions.map((option: any, index) => (
           <TouchableRipple
-            key={`manage-card-option-${index}`}
-            style={{ paddingHorizontal: 24, paddingVertical: 16 }}
             rippleColor="rgba(0, 0, 0, .05)"
+            key={`manage-card-option-${index}`}
             onPress={() => console.log('Pressed')}
+            style={{ paddingHorizontal: 24, paddingVertical: 16 }}
           >
             <Row>
               <Row>
@@ -200,9 +200,9 @@ export default function Card() {
 
                 <Text
                   style={{
-                    fontFamily: 'semibold',
                     fontSize: 16,
                     marginLeft: 16,
+                    fontFamily: 'semibold',
                   }}
                 >
                   {option.label}
@@ -210,8 +210,8 @@ export default function Card() {
               </Row>
 
               <AntDesign
-                name="right"
                 size={18}
+                name="right"
                 color={theme.colors.onBackground}
               />
             </Row>
