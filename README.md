@@ -12,3 +12,9 @@
 |                    |                    |                    |                    |
 |--------------------|--------------------|--------------------|--------------------|
 | ![Tela 5](./assets/screenshots/screen5.png) | ![Tela 6](./assets/screenshots/screen6.png) | ![Tela 7](./assets/screenshots/screen7.png) | ![Tela 8](./assets/screenshots/screen8.png) |
+
+## Card
+
+|                    |                    |                    |                    |
+|--------------------|--------------------|--------------------|--------------------|
+| ![Tela 9](./assets/screenshots/screen9.png) | ![Tela 10](./assets/screenshots/screen10.png) | ![Tela 11](./assets/screenshots/screen11.png) | ![Tela 12](./assets/screenshots/screen12.png) |
