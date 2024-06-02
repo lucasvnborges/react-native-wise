@@ -13,7 +13,7 @@
 |--------------------|--------------------|--------------------|--------------------|
 | ![Tela 5](./assets/screenshots/screen5.png) | ![Tela 6](./assets/screenshots/screen6.png) | ![Tela 7](./assets/screenshots/screen7.png) | ![Tela 8](./assets/screenshots/screen8.png) |
 
-## Card
+## Cards
 
 |                    |                    |                    |                    |
 |--------------------|--------------------|--------------------|--------------------|
