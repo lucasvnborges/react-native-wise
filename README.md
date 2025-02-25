@@ -1,4 +1,4 @@
-# 🚧 App em construção 🏗️ React Native Wise
+🌐💶 React Native Wise
 
 
 ## Initial
